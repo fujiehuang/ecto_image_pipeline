@@ -3,18 +3,18 @@ project(ecto_image_pipeline)
 
 find_package(Boost REQUIRED)
 find_package(catkin REQUIRED cmake_modules opencv_candidate)
-find_package(Eigen REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(PCL QUIET COMPONENTS common)
 if(PCL_FOUND)
 catkin_package(CATKIN_DEPENDS opencv_candidate
-               DEPENDS Boost Eigen OpenCV PCL
+               DEPENDS Boost Eigen3 OpenCV PCL
                INCLUDE_DIRS include
                LIBRARIES ecto_image_pipeline
 )
 else()
 catkin_package(CATKIN_DEPENDS opencv_candidate
-               DEPENDS Boost Eigen OpenCV
+               DEPENDS Boost Eigen3 OpenCV
                INCLUDE_DIRS include
                LIBRARIES ecto_image_pipeline
 )
