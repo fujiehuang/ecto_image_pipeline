@@ -89,7 +89,8 @@ namespace image_pipeline
     cv::Mat P;
     cv::eigen2cv(P_.transform.matrix(), P);
 
-    cvWriteComment(*fs, "Stereo", 0);
+    //cvWriteComment(*fs, "Stereo", 0);
+    fs.writeComment("Stereo", 0);
 
     if (!P.empty())
       fs << "stereo_pose_offset" << P;

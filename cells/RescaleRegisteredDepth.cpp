@@ -45,7 +45,7 @@ struct RescaledRegisteredDepth {
     //resize into the subregion of the correct aspect ratio
     cv::Mat subregion(output.rowRange(0, dsize.height * factor));
     //use nearest neighbor to prevent discontinuities causing bogus depth.
-    cv::resize(depth, subregion, subregion.size(), CV_INTER_NN);
+    cv::resize(depth, subregion, subregion.size(), cv::INTER_NEAREST);
     output.rowRange(dsize.height * factor, output.rows).setTo(
         cv::Scalar(std::numeric_limits<float>::quiet_NaN(), std::numeric_limits<float>::quiet_NaN(),
             std::numeric_limits<float>::quiet_NaN()));
@@ -62,7 +62,7 @@ struct RescaledRegisteredDepth {
       cv::Mat mask(isize, CV_8U);
       cv::Mat subregion(mask.rowRange(0, dsize.height * factor));
       //use nearest neighbor to prevent discontinuities causing bogus depth.
-      cv::resize(*mask_in_, subregion, subregion.size(), CV_INTER_NN);
+      cv::resize(*mask_in_, subregion, subregion.size(), cv::INTER_NEAREST);
       mask.rowRange(dsize.height * factor, output.rows).setTo(cv::Scalar(0, 0, 0));
       *mask_out_ = mask;
     }

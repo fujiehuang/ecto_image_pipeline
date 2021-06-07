@@ -540,7 +540,8 @@ void PinholeCameraModel::writeCalibration(std::string calibfile) const
   cv::eigen2cv(D_,D);
   cv::eigen2cv(Kp_,Kp);
   cv::eigen2cv(R_,R);
-  cvWriteComment(*fs, "Camera", 0);
+  //cvWriteComment(*fs, "Camera", 0);
+  fs.writeComment("Camera", 0);
 
   fs << "image_width" << width_;
   fs << "image_height" << height_;

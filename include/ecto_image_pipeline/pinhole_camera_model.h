@@ -122,13 +122,13 @@ public:
    * \brief Rectify a raw camera image.
    */
   void rectifyImage(const cv::Mat& raw, cv::Mat& rectified,
-                    int interpolation = CV_INTER_LINEAR) const;
+                    int interpolation = cv::INTER_LINEAR) const;
 
   /**
    * \brief Apply camera distortion to a rectified image.
    */
   void unrectifyImage(const cv::Mat& rectified, cv::Mat& raw,
-                      int interpolation = CV_INTER_LINEAR) const;
+                      int interpolation = cv::INTER_LINEAR) const;
 
   void rectifyPoint(const Eigen::Vector2d& uv_raw, Eigen::Vector2d& uv_rect) const ROS_DEPRECATED;
   
@@ -304,7 +304,7 @@ protected:
   // Use PIMPL here so we can change internals in patch updates if needed
   struct Cache;
   boost::shared_ptr<Cache> cache_; // Holds cached data for internal use
-  bool initialized() const { return cache_; }
+  bool initialized() const { return cache_.get() != nullptr; }
 
   friend class StereoCameraModel;
 };
